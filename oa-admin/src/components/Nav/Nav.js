@@ -2,18 +2,57 @@ import React, { Component } from 'react';
 
 import { Menu, Button } from 'antd';
 import {
-  AppstoreOutlined,
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-  PieChartOutlined,
-  DesktopOutlined,
-  ContainerOutlined,
-  MailOutlined,
+//   AppstoreOutlined,
+//   MenuUnfoldOutlined,
+//   MenuFoldOutlined,
+//   PieChartOutlined,
+//   DesktopOutlined,
+//   ContainerOutlined,
+//   MailOutlined,
 } from '@ant-design/icons';
+
+import menuList from '../../config/menuConfig'
 
 const { SubMenu } = Menu;
 
 class Nav extends Component {
+    constructor(params) {
+        super(params)
+
+        this.state = {
+            list: []
+        }
+
+        this.createMenu = this.createMenu.bind(this)
+    }
+
+    createMenu(_config) {
+        let _list = _config.map((item, index) => {
+            if (item.children) {
+                return (
+                    <SubMenu key={item.path} icon={item.icon} title={item.title}>
+                        {this.createMenu(item.children)}
+                    </SubMenu>
+                )
+            } else {
+                return (
+                    <Menu.Item key={item.path} icon={item.icon}>
+                        <span>{item.title}</span>
+                    </Menu.Item>
+                )
+            }
+        })
+
+        return _list
+    }
+
+    componentWillMount() {
+        let list = this.createMenu(menuList)
+        this.setState({
+            list
+        })
+    }
+
     render() {
         return (
             <div>
@@ -24,7 +63,8 @@ class Nav extends Component {
                     theme="dark"
                     // inlineCollapsed={this.state.collapsed}
                     >
-                    <Menu.Item key="1" icon={<PieChartOutlined />}>
+                        {this.state.list}
+                    {/* <Menu.Item key="1" icon={<PieChartOutlined />}>
                         Option 1
                     </Menu.Item>
                     <Menu.Item key="2" icon={<DesktopOutlined />}>
@@ -46,7 +86,7 @@ class Nav extends Component {
                         <Menu.Item key="11">Option 11</Menu.Item>
                         <Menu.Item key="12">Option 12</Menu.Item>
                         </SubMenu>
-                    </SubMenu>
+                    </SubMenu> */}
                 </Menu>
             </div>
         );
