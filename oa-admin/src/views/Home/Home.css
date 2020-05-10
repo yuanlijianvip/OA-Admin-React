@@ -1,0 +1,17 @@
+.home {
+    padding: 40px;
+    text-align: center;
+}
+
+.home-name {
+    text-align: left;
+}
+
+.home-title {
+    font-size: 38px;
+    margin: 50px 0;
+}
+
+.home-wrapper img {
+    width: 200px;
+}

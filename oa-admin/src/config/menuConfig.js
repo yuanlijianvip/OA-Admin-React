@@ -32,8 +32,21 @@ const menuList = [
             {
                 title: "分类列表",
                 path: "/classify/list"
+            },
+            {
+                title: "path列表",
+                path: "classify/path"
             }
         ]
+    },
+    {
+        title: "教师信息",
+        path: '/teacher',
+        icon: ''
+    },
+    {
+        title: "课程信息",
+        path: '/course'
     }            
 
 ]

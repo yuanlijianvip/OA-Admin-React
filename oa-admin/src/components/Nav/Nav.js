@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
-import { Menu, Button } from 'antd';
+import { Menu } from 'antd';
+
+import { Link } from 'react-router-dom' 
+
 import {
 //   AppstoreOutlined,
 //   MenuUnfoldOutlined,
@@ -37,7 +40,9 @@ class Nav extends Component {
             } else {
                 return (
                     <Menu.Item key={item.path} icon={item.icon}>
-                        <span>{item.title}</span>
+                        <Link to={item.path}>
+                            <span>{item.title}</span>
+                        </Link>
                     </Menu.Item>
                 )
             }
